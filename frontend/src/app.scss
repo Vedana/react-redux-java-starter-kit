@@ -1,0 +1,76 @@
+body{
+  margin : 0px;
+  height: 100vh;
+  font-size : 12px;
+  background-color: #ECECEC;
+  font-family: 'Roboto', sans-serif;
+}
+
+.panel_container{
+  background-color: white;
+  padding: 20px;
+  margin-top: -2px;
+  height: auto;
+
+
+  &_title{
+    font-weight:bold;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #326299;
+  }
+}
+
+legend{
+  color: #326299;
+  border-bottom: 2px solid #326299;
+  font-size:13px;
+}
+
+.panel-title{
+  font-size:13px;
+  font-weight:bold;
+}
+
+.navbar {
+  border-radius: 0px;
+}
+
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover{
+  color:white;
+}
+
+.panel-default{
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border:none;
+}
+
+.panel-default > .panel-heading{
+  font-weight: bold;
+  color: white;
+  background-color: #326299;
+  text-transform: uppercase;
+}
+
+.panel-group .panel{
+  margin-bottom : 20px;
+}
+
+.form-row {
+  margin-bottom : 15px;
+}
+
+.react-datepicker__input-container{
+  display:inline-block;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    text-align: left;
+}

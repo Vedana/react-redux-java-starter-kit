@@ -91,8 +91,7 @@ public class EmployeesRestControllerTest {
 	@Test
     public void employeeNotFound() throws Exception {
 		mockMvc.perform(get("/api/employees/9999"))
-		.andExpect(status().isOk())
-		.andExpect(content().string(""));
+		.andExpect(status().isNotFound());
     }
 	
 	@Test

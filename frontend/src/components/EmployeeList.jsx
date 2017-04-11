@@ -1,12 +1,12 @@
-import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from "react-redux";
-import { Link } from 'react-router';
+import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { Link } from 'react-router'
 
 const EmployeeList = (props) => (
   <div>
     <h1>Employee List</h1>
-    <table border="1">
+    <table>
       <tbody>
         <tr>
           <th>Id</th>
@@ -16,8 +16,8 @@ const EmployeeList = (props) => (
         </tr>
         {props.employees.map(
           employee =>
-            <tr>
-              <td><Link to="/Employee" query={{employee: employee.id}}>{employee.id}</Link></td>
+            <tr key={employee.id}>
+              <td><Link to={`/Employee/${employee.id}`}>{employee.id}</Link></td>
               <td>{employee.firstName}</td>
               <td>{employee.lastName}</td>
               <td>{employee.description}</td>
@@ -33,12 +33,12 @@ const EmployeeList = (props) => (
  * @param state Redux state
  * @return Component properties
  */
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   const props = {
     employees: state.employee.employees
-  };
+  }
 
-  return props;
+  return props
 }
 
 /**
@@ -47,8 +47,7 @@ function mapStateToProps(state) {
  * @return Component properties
  */
 function mapDispatchToProps (dispatch) {
-	return bindActionCreators({
-	}, dispatch);
+  return bindActionCreators({}, dispatch)
 }
 
 /**

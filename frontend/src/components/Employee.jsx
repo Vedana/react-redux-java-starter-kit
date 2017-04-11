@@ -1,16 +1,16 @@
-import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from "react-redux";
+import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 // actions
-import {getEmployee} from '../redux/actions/employee-actions';
+import {getEmployee} from '../redux/actions/employee-actions'
 
 // Employee form
 class Employee extends React.Component {
-  render() {
-    let employee = this.props.employee;
-    if (!employee) return null;
-    return(
+  render () {
+    let employee = this.props.employee
+    if (!employee) return null
+    return (
       <div>
         <h1>Employee {this.employeeId()}</h1>
         <form>
@@ -20,18 +20,18 @@ class Employee extends React.Component {
           <button>Modify</button>
         </form>
       </div>
-    );
+    )
   }
 
-  componentWillMount(){
-    let id = this.employeeId();
+  componentWillMount () {
+    let id = this.employeeId()
     if (id) {
-      this.props.getEmployee(id);
+      this.props.getEmployee(id)
     }
   }
 
-  employeeId() {
-    return this.props.location.query.employee;
+  employeeId () {
+    return this.props.params.employeeId
   }
 }
 
@@ -40,12 +40,12 @@ class Employee extends React.Component {
  * @param state Redux state
  * @return Component properties
  */
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   const props = {
     employee: state.employee.employee
-  };
+  }
 
-  return props;
+  return props
 }
 
 /**
@@ -54,9 +54,9 @@ function mapStateToProps(state) {
  * @return Component properties
  */
 function mapDispatchToProps (dispatch) {
-	return bindActionCreators({
+  return bindActionCreators({
     getEmployee
-	}, dispatch);
+  }, dispatch)
 }
 
 /**

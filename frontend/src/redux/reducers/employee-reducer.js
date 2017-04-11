@@ -2,7 +2,7 @@ import {SET_EMPLOYEES, SET_EMPLOYEE} from '../actions/employee-actions'
 
 /** Etat initial */
 const initialState = {
-	employees : []
+  employees: []
 }
 
 /**
@@ -15,15 +15,15 @@ const initialState = {
  *            l'action à appliquer
  * @return le nouvel état
  */
-export function employee(state = initialState, action) {
+export function employee (state = initialState, action) {
   switch (action.type) {
-		case SET_EMPLOYEES:
-			return {...state, employees: action.employees};
-		case SET_EMPLOYEE:
-			return {...state, employee: action.employee};
+    case SET_EMPLOYEES:
+      return {...state, employees: action.employees}
+    case SET_EMPLOYEE:
+      return {...state, employee: action.employee}
     default:
-			return state;
-	}
+      return state
+  }
 }
 
 export default { employee }

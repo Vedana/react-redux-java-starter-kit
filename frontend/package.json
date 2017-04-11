@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prestart": "cpx ./src/index.html ./build/",
+    "start": "node ./fuse.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Didier MOISE",
@@ -26,6 +28,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-react-jsx": "^6.8.0",
     "babel-preset-latest": "^6.16.0",
+    "cpx": "^1.5.0",
     "eslint": "^3.19.0",
     "eslint-config-standard": "^10.2.0",
     "eslint-plugin-babel": "^4.1.1",
@@ -39,6 +42,7 @@
     "gulp-server-livereload": "^1.9.2",
     "http-proxy-middleware": "^0.17.4",
     "node-sass": "^4.5.2",
+    "rimraf": "^2.6.1",
     "run-sequence": "^1.2.2",
     "typescript": "^2.1.4"
   }

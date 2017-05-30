@@ -4,10 +4,11 @@ import { render } from 'react-dom'
 import { Router, Route, hashHistory } from 'react-router'
 
 // Redux
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { syncHistoryWithStore, routerMiddleware, routerReducer } from 'react-router-redux'
 import thunkMiddleware from 'redux-thunk'
+import { reducer as reduxFormReducer } from 'redux-form'
 
 // Components
 import EmployeeList from './components/EmployeeList'
@@ -27,10 +28,12 @@ import './App.scss'
 // premier niveau du state, contenant l'état de chaque reducer
 const reducers = combineReducers(Object.assign({},
   {routing: routerReducer},
+  {form: reduxFormReducer},
   employee
 ))
 
-const store = createStore(reducers, applyMiddleware(thunkMiddleware, routerMiddleware(hashHistory)))
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware, routerMiddleware(hashHistory))))
 
 render(
     <Provider store={store}>

@@ -69,8 +69,38 @@ export function fetchEmployee (id) {
 }
 
 /**
- * Chargement de l'employee courant
+ * Chargement de l'employee courant dans le store
  */
 export function setEmployee (employee) {
   return {type: SET_EMPLOYEE, employee}
+}
+
+/**
+ * Appel de l'API REST pour modifier un employé (via PUT)
+ */
+export function putEmployee (employee) {
+  return fetch(ROOT_API + '/employees/' + employee.id, {
+    credentials: 'include',
+    headers: {'Content-Type': 'application/json'},
+    method: 'put',
+    body: JSON.stringify(employee)
+  })
+  .then(response =>
+    response.json()
+  )
+}
+
+/**
+ * Modification d'un employé via l'API
+ */
+export function saveEmployee (employee) {
+  return (dispatch) => {
+    putEmployee(employee)
+    .then(data => {
+      dispatch(setEmployee(data))
+    })
+    .catch((e) => {
+      alert(e.message)
+    })
+  }
 }

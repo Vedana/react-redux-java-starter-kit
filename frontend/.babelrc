@@ -1,8 +1,9 @@
 {
     "sourceMaps": true,
-    "presets": ["latest"],
+    "presets": ["es2015", "stage-2", "react"],
     "plugins": [
 			"transform-react-jsx",
-			"transform-object-rest-spread"
+			"transform-object-rest-spread",
+      "transform-class-properties"
     ]
 }

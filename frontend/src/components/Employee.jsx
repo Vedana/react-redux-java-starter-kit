@@ -1,6 +1,10 @@
 import React from 'react'
 import {Field, reduxForm} from 'redux-form'
 import {connect} from 'react-redux'
+import { Link, browserHistory } from 'react-router'
+import { Button } from 'react-bootstrap';
+
+
 
 // actions
 import {getEmployee, saveEmployee} from '../redux/actions/employee-actions'
@@ -26,13 +30,18 @@ class Employee extends React.Component {
     const {handleSubmit, submitting, pristine} = this.props
 
     return (
-      <div>
+      <div className="container">
         <h1>Employee</h1>
-        <form>
-          <div>First Name : <Field component="input" type="text" name="firstName" /></div>
-          <div>Last Name : <Field component="input" type="text" name="lastName" /></div>
-          <div>Description : <Field component="input" type="text" name="description" /></div>
-          <button type="submit" onClick={handleSubmit(this.handleSaveEvent)} disabled={pristine || submitting}>OK</button>
+        <form className="form-group">
+          <div>First Name : <Field component="input" type="text" name="firstName" className="form-control" /></div>
+          <div>Last Name : <Field component="input" type="text" name="lastName" className="form-control" /></div>
+          <div>Description : <Field component="input" type="text" name="description" className="form-control" /></div>
+          <br />
+          <Link to={`/`}>
+            <Button onClick={() =>{handleSubmit(this.handleSaveEvent);browserHistory.push('/');}} className="form-control">
+              {this.employeeId()=='Add'?'Add Employee':'Update Employee'}
+            </Button>
+          </Link>
         </form>
       </div>
     )

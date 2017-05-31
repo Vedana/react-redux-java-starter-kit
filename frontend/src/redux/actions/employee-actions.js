@@ -104,3 +104,16 @@ export function saveEmployee (employee) {
     })
   }
 }
+
+
+
+export function deleteEmployee (employee) {
+  return fetch(ROOT_API + '/employees/' + employee.id, {
+    credentials: 'include',
+    headers: {'Content-Type': 'application/json'},
+    method: 'DELETE',
+  })
+  .then(response =>
+    response.json()
+  )
+}

@@ -23,12 +23,11 @@ class Employee extends React.Component {
   }
 
   handleSaveEvent = (employee) => {
-    this.props.save(employee)
+    this.props.save(employee);
   };
 
   render () {
     const {handleSubmit, submitting, pristine} = this.props
-
     return (
       <div className="container">
         <h1>Employee</h1>
@@ -37,11 +36,9 @@ class Employee extends React.Component {
           <div>Last Name : <Field component="input" type="text" name="lastName" className="form-control" /></div>
           <div>Description : <Field component="input" type="text" name="description" className="form-control" /></div>
           <br />
-          <Link to={`/`}>
-            <Button onClick={() =>{handleSubmit(this.handleSaveEvent);browserHistory.push('/');}} className="form-control">
-              {this.employeeId()=='Add'?'Add Employee':'Update Employee'}
-            </Button>
-          </Link>
+          <Button onClick={handleSubmit(this.handleSaveEvent)} className="form-control">
+            {this.employeeId()=='Add'?'Add Employee':'Update Employee'}
+          </Button>
         </form>
       </div>
     )

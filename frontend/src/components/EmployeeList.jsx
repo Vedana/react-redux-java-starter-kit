@@ -3,9 +3,9 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { Button } from 'react-bootstrap';
-
+// import FontAwesome from 'react-fontawesome'
 //Actions
-import {deleteEmployee} from '../redux/actions/employee-actions'
+import {deleteAnEmployee} from '../redux/actions/employee-actions'
 
 
 const EmployeeList = (props) => (
@@ -33,13 +33,13 @@ const EmployeeList = (props) => (
                 <td>
                   <Link to={`/Employee/${employee.id}`}>
                     <Button bsStyle="info" bsSize="small">
-                      Edit
+                      <span className="fa fa-edit"></span>
                     </Button>
                   </Link>
                 </td>
                 <td>
-                  <Button bsStyle="danger" bsSize="small" onClick={() => {deleteEmployee(employee);window.location.reload()}}>
-                    {"\u{2718}"}
+                  <Button bsStyle="danger" bsSize="small" onClick={() => {handleDeleteEvent(employee)}}>
+                    <span className="fa fa-remove"></span>
                   </Button>
                 </td>
 
@@ -51,7 +51,7 @@ const EmployeeList = (props) => (
       </table>
       <Link to={`/Employee/Add`}>
         <Button bsStyle="success">
-          Add Employee
+          <span className="fa fa-plus-square"></span>
         </Button>
       </Link>
     </div>
@@ -80,6 +80,12 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return bindActionCreators({}, dispatch)
 }
+
+function handleDeleteEvent(employee) {
+  console.log(employee);
+  deleteAnEmployee(employee);
+}
+
 
 /**
  * Connect component to the Redux store.

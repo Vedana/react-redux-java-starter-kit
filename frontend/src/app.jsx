@@ -45,6 +45,6 @@ render(
     ,
     document.getElementById('app')
   )
-
+console.log(store.getState());
 // Chargement de la liste des empoyés
 store.dispatch(getEmployees())

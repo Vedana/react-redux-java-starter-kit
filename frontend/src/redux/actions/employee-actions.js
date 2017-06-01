@@ -98,6 +98,23 @@ export function saveEmployee (employee) {
     putEmployee(employee)
     .then(data => {
       dispatch(setEmployee(data))
+      console.log("Employee sauvegardé");
+    })
+    .catch((e) => {
+      alert(e.message)
+    })
+  }
+}
+
+
+export function deleteAnEmployee (employee) {
+  console.log(employee);
+  console.log(store.getState());
+  return (dispatch) => {
+    console.log("patate");
+    deleteEmployee(employee)
+    .then(data => {
+
     })
     .catch((e) => {
       alert(e.message)
@@ -112,6 +129,20 @@ export function deleteEmployee (employee) {
     credentials: 'include',
     headers: {'Content-Type': 'application/json'},
     method: 'DELETE',
+  })
+  .then(response =>
+    response.json()
+  )
+}
+
+
+
+export function postEmployee (employee) {
+  return fetch(ROOT_API + '/employees/', {
+    credentials: 'include',
+    headers: {'Content-Type': 'application/json'},
+    method: 'post',
+    body: JSON.stringify(employee)
   })
   .then(response =>
     response.json()

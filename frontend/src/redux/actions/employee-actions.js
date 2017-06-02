@@ -98,7 +98,6 @@ export function saveEmployee (employee) {
     putEmployee(employee)
     .then(data => {
       dispatch(setEmployee(data))
-      console.log("Employee sauvegardé");
     })
     .catch((e) => {
       alert(e.message)
@@ -107,15 +106,23 @@ export function saveEmployee (employee) {
 }
 
 
-export function deleteAnEmployee (employee) {
-  console.log(employee);
-  console.log(store.getState());
-  return (dispatch) => {
-    console.log("patate");
-    deleteEmployee(employee)
-    .then(data => {
+export function deleteAnEmployee (employees, employee) {
 
-    })
+  var employees2= []
+  employees.forEach(function(element) {
+      if (element == employee) {
+        console.log("Employee " + employee.firstName + " deleted");
+
+      } else {
+        employees2.push(element)
+      }
+    }
+  )
+  return (dispatch) => {
+    deleteEmployee(employee)
+    .then(
+      dispatch(setEmployees(employees2))
+    )
     .catch((e) => {
       alert(e.message)
     })

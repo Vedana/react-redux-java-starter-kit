@@ -52,6 +52,8 @@ const EmployeeForm = reduxForm({
   form: 'employee' // form identifier
 })(Employee)
 
+
+
 // You have to connect() to any reducers that you wish to connect to yourself
 const EmployeeStateForm = connect(
   state => ({

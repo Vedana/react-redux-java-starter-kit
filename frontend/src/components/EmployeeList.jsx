@@ -8,6 +8,8 @@ import { Button } from 'react-bootstrap';
 import {deleteAnEmployee} from '../redux/actions/employee-actions'
 
 
+
+
 const EmployeeList = (props) => (
   <div className="container">
     <h1>Employee List</h1>
@@ -38,7 +40,7 @@ const EmployeeList = (props) => (
                   </Link>
                 </td>
                 <td>
-                  <Button bsStyle="danger" bsSize="small" onClick={() => {handleDeleteEvent(employee)}}>
+                  <Button bsStyle="danger" bsSize="small" onClick={() => {handleDeleteEvent(props.employees, employee)}}>
                     <span className="fa fa-remove"></span>
                   </Button>
                 </td>
@@ -59,6 +61,7 @@ const EmployeeList = (props) => (
 )
 
 
+
 /**
  * Map the Redux state to component properties
  * @param state Redux state
@@ -68,6 +71,7 @@ function mapStateToProps (state) {
   const props = {
     employees: state.employee.employees
   }
+
 
   return props
 }
@@ -81,9 +85,8 @@ function mapDispatchToProps (dispatch) {
   return bindActionCreators({}, dispatch)
 }
 
-function handleDeleteEvent(employee) {
-  console.log(employee);
-  deleteAnEmployee(employee);
+function handleDeleteEvent(employees, employee) {
+  deleteAnEmployee(employees, employee)
 }
 
 

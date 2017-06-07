@@ -2,13 +2,10 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import { Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap'
 // import FontAwesome from 'react-fontawesome'
-//Actions
+// Actions
 import {deleteAnEmployee} from '../redux/actions/employee-actions'
-
-
-
 
 const EmployeeList = (props) => (
   <div className="container">
@@ -40,7 +37,7 @@ const EmployeeList = (props) => (
                   </Link>
                 </td>
                 <td>
-                  <Button bsStyle="danger" bsSize="small" onClick={() => {handleDeleteEvent(props.employees, employee)}}>
+                  <Button bsStyle="danger" bsSize="small" onClick={ () => { handleDeleteEvent(props.employees, employee)} }>
                     <span className="fa fa-remove"></span>
                   </Button>
                 </td>
@@ -60,18 +57,16 @@ const EmployeeList = (props) => (
   </div>
 )
 
-
-
 /**
  * Map the Redux state to component properties
  * @param state Redux state
  * @return Component properties
  */
 function mapStateToProps (state) {
+  console.log(state)
   const props = {
     employees: state.employee.employees
   }
-
 
   return props
 }
@@ -85,10 +80,9 @@ function mapDispatchToProps (dispatch) {
   return bindActionCreators({}, dispatch)
 }
 
-function handleDeleteEvent(employees, employee) {
+function handleDeleteEvent (employees, employee) {
   deleteAnEmployee(employees, employee)
 }
-
 
 /**
  * Connect component to the Redux store.

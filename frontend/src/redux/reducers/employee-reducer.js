@@ -1,4 +1,4 @@
-import {SET_EMPLOYEES, SET_EMPLOYEE} from '../actions/employee-actions'
+import {SET_EMPLOYEES, SET_EMPLOYEE, DELETE_EMPLOYEE} from '../actions/employee-actions'
 
 /** Etat initial */
 const initialState = {
@@ -21,6 +21,10 @@ export function employee (state = initialState, action) {
       return {...state, employees: action.employees}
     case SET_EMPLOYEE:
       return {...state, employee: action.employee}
+    case DELETE_EMPLOYEE:
+      let state2 = state
+      state2.employees.splice(state2.employees.indexOf(action.employee), 1)
+      return state
     default:
       return state
   }

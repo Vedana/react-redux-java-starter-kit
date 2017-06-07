@@ -2,6 +2,7 @@ import 'isomorphic-fetch'
 
 export const SET_EMPLOYEES = 'employees/SET_EMPLOYEES'
 export const SET_EMPLOYEE = 'employees/SET_EMPLOYEE'
+export const DELETE_EMPLOYEE = 'employees/DELETE_EMPLOYEE'
 
 const ROOT_API = '/api'
 
@@ -72,7 +73,7 @@ export function fetchEmployee (id) {
  * Chargement de l'employee courant dans le store
  */
 export function setEmployee (employee) {
-  return {type: SET_EMPLOYEE, employee}
+  return {type: SET_EMPLOYEE, employee: employee}
 }
 
 /**
@@ -105,19 +106,15 @@ export function saveEmployee (employee) {
   }
 }
 
-
 export function deleteAnEmployee (employees, employee) {
-
-  var employees2= []
-  employees.forEach(function(element) {
-      if (element == employee) {
-        console.log("Employee " + employee.firstName + " deleted");
-
-      } else {
-        employees2.push(element)
-      }
+  var employees2 = []
+  employees.forEach(function (element) {
+    if (element === employee) {
+      console.log('Employee ' + employee.firstName + ' deleted')
+    } else {
+      employees2.push(element)
     }
-  )
+  })
   return (dispatch) => {
     deleteEmployee(employee)
     .then(
@@ -129,20 +126,16 @@ export function deleteAnEmployee (employees, employee) {
   }
 }
 
-
-
 export function deleteEmployee (employee) {
   return fetch(ROOT_API + '/employees/' + employee.id, {
     credentials: 'include',
     headers: {'Content-Type': 'application/json'},
-    method: 'DELETE',
+    method: 'DELETE'
   })
   .then(response =>
     response.json()
   )
 }
-
-
 
 export function postEmployee (employee) {
   return fetch(ROOT_API + '/employees/', {

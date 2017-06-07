@@ -29,10 +29,10 @@ import './App.scss'
 const reducers = combineReducers(Object.assign({},
   {routing: routerReducer},
   {form: reduxFormReducer},
-  employee
+  {employee: employee}
 ))
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware, routerMiddleware(hashHistory))))
 
 render(

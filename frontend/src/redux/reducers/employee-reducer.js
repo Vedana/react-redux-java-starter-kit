@@ -1,4 +1,4 @@
-import {SET_EMPLOYEES, SET_EMPLOYEE, DELETE_EMPLOYEE} from '../actions/employee-actions'
+import {SET_EMPLOYEES, SET_CURRENT_EMPLOYEE, DELETE_EMPLOYEE, ADD_EMPLOYEE, MODIFY_EMPLOYEE } from '../actions/employee-actions'
 
 /** Etat initial */
 const initialState = {
@@ -15,16 +15,32 @@ const initialState = {
  *            l'action à appliquer
  * @return le nouvel état
  */
+
+
 export function employee (state = initialState, action) {
+  let arrayTemp
   switch (action.type) {
     case SET_EMPLOYEES:
       return {...state, employees: action.employees}
-    case SET_EMPLOYEE:
-      return {...state, employee: action.employee}
+    case SET_CURRENT_EMPLOYEE:
+      return {...state, currentEmployeeId: action.employee.id}
     case DELETE_EMPLOYEE:
-      let state2 = state
-      state2.employees.splice(state2.employees.indexOf(action.employee), 1)
-      return state
+      arrayTemp = {...state}.employees.slice()
+      arrayTemp.splice(arrayTemp.indexOf(action.employee),1 )
+      return {...state, employees: arrayTemp}
+    case ADD_EMPLOYEE:
+      arrayTemp = {...state}.employees.slice()
+      arrayTemp.push(action.employee)
+      return {...state, employees: arrayTemp}
+    case MODIFY_EMPLOYEE:
+      arrayTemp = {...state}.employees.slice()
+      arrayTemp = arrayTemp.map(function(employee){
+        if (employee.id === action.employee.id){
+          return action.employee
+        }
+        return employee
+      })
+      return {...state, employees: arrayTemp}
     default:
       return state
   }

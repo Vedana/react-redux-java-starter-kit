@@ -1,8 +1,10 @@
 import 'isomorphic-fetch'
 
 export const SET_EMPLOYEES = 'employees/SET_EMPLOYEES'
-export const SET_EMPLOYEE = 'employees/SET_EMPLOYEE'
+export const SET_CURRENT_EMPLOYEE = 'employees/SET_EMPLOYEE'
 export const DELETE_EMPLOYEE = 'employees/DELETE_EMPLOYEE'
+export const ADD_EMPLOYEE = 'employees/ADD_EMPLOYEE'
+export const MODIFY_EMPLOYEE = 'employees/MODIFY_EMPLOYEE'
 
 const ROOT_API = '/api'
 
@@ -73,7 +75,7 @@ export function fetchEmployee (id) {
  * Chargement de l'employee courant dans le store
  */
 export function setEmployee (employee) {
-  return {type: SET_EMPLOYEE, employee: employee}
+  return {type: SET_CURRENT_EMPLOYEE, employee: employee}
 }
 
 /**
@@ -94,36 +96,42 @@ export function putEmployee (employee) {
 /**
  * Modification d'un employé via l'API
  */
-export function saveEmployee (employee) {
-  return (dispatch) => {
-    putEmployee(employee)
-    .then(data => {
-      dispatch(setEmployee(data))
-    })
-    .catch((e) => {
-      alert(e.message)
-    })
+export function saveEmployee (employee, method) {
+  if (method === 'Add') {
+    return (dispatch) => {
+      postEmployee(employee)
+      .then(data => {
+        dispatch(addEmployee(data))
+        console.log(data);
+      })
+      .catch((e) => {
+        alert(e.message)
+      })
+    }
+  } else {
+    return (dispatch) => {
+      putEmployee(employee)
+      .then(data => {
+        dispatch(modifyEmployee(data))
+      })
+      .catch((e) => {
+        alert(e.message)
+      })
+    }
   }
 }
 
-export function deleteAnEmployee (employees, employee) {
-  var employees2 = []
-  employees.forEach(function (element) {
-    if (element === employee) {
-      console.log('Employee ' + employee.firstName + ' deleted')
-    } else {
-      employees2.push(element)
-    }
-  })
-  return (dispatch) => {
-    deleteEmployee(employee)
-    .then(
-      dispatch(setEmployees(employees2))
-    )
-    .catch((e) => {
-      alert(e.message)
-    })
-  }
+export function addEmployee(employee) {
+  return {type: ADD_EMPLOYEE, employee: employee}
+}
+
+export function modifyEmployee(employee) {
+  return {type: MODIFY_EMPLOYEE, employee: employee}
+}
+
+export function deleteAnEmployee (employee) {
+  deleteEmployee(employee)
+  return {type: DELETE_EMPLOYEE, employee: employee}
 }
 
 export function deleteEmployee (employee) {

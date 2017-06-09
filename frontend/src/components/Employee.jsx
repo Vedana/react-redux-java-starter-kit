@@ -1,8 +1,8 @@
 import React from 'react'
 import {Field, reduxForm} from 'redux-form'
 import {connect} from 'react-redux'
-import { Link, browserHistory } from 'react-router'
-import { Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap'
+import { browserHistory } from 'react-router'
 
 
 
@@ -23,7 +23,7 @@ class Employee extends React.Component {
   }
 
   handleSaveEvent = (employee) => {
-    this.props.save(employee);
+    this.props.save(employee, this.employeeId());
   };
 
   render () {
@@ -36,7 +36,7 @@ class Employee extends React.Component {
           <div>Last Name : <Field component="input" type="text" name="lastName" className="form-control" /></div>
           <div>Description : <Field component="input" type="text" name="description" className="form-control" /></div>
           <br />
-          <Button onClick={handleSubmit(this.handleSaveEvent)} className="form-control">
+          <Button onClick={handleSubmit(this.handleSaveEvent)} className="form-control" disabled={submitting}>
             {this.employeeId()=='Add'?'Add Employee':'Update Employee'}
           </Button>
         </form>
@@ -49,16 +49,33 @@ class Employee extends React.Component {
  * Connect component to Redux form.
  */
 const EmployeeForm = reduxForm({
-  form: 'employee' // form identifier
+  form: 'employee', // form identifier
+  onSubmitSuccess: () => {
+    browserHistory.push('/')
+  },
+  enableReinitialize : true
 })(Employee)
 
 
+const getCurrentEmployee = (employees, currentEmployeeId) => {
+  let currentEmployee
+  employees.map(function(employee) {
+    if (currentEmployeeId === employee.id){
+      currentEmployee = employee
+    }
+  })
+  return currentEmployee
+}
+
+const mapStateToProps = (state) => {
+  return {
+    initialValues: getCurrentEmployee(state.employee.employees, state.employee.currentEmployeeId)
+  }
+}
 
 // You have to connect() to any reducers that you wish to connect to yourself
 const EmployeeStateForm = connect(
-  state => ({
-    initialValues: state.employee.employee // pull initial values from reducer
-  }),
+  mapStateToProps,
   {
     load: getEmployee,
     save: saveEmployee

@@ -1,7 +1,7 @@
 // React
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, Route, hashHistory } from 'react-router'
+import { Router, Route, browserHistory } from 'react-router'
 
 // Redux
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
@@ -29,15 +29,15 @@ import './App.scss'
 const reducers = combineReducers(Object.assign({},
   {routing: routerReducer},
   {form: reduxFormReducer},
-  {employee: employee}
+  employee
 ))
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware, routerMiddleware(hashHistory))))
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware, routerMiddleware(browserHistory))))
 
 render(
     <Provider store={store}>
-      <Router history={syncHistoryWithStore(hashHistory, store)}>
+      <Router history={syncHistoryWithStore(browserHistory, store)}>
           <Route path="/" component={EmployeeList}/>
           <Route path="/Employee/:employeeId" component={Employee}/>
       </Router>

@@ -4,8 +4,6 @@ import {connect} from 'react-redux'
 import { Button } from 'react-bootstrap'
 import { browserHistory } from 'react-router'
 
-
-
 // actions
 import {getEmployee, saveEmployee} from '../redux/actions/employee-actions'
 
@@ -58,6 +56,7 @@ const EmployeeForm = reduxForm({
 
 
 const getCurrentEmployee = (employees, currentEmployeeId) => {
+  // employees:array[object(employee)], currentEmployeeId int => return object(employee)
   let currentEmployee
   employees.map(function(employee) {
     if (currentEmployeeId === employee.id){
@@ -67,15 +66,11 @@ const getCurrentEmployee = (employees, currentEmployeeId) => {
   return currentEmployee
 }
 
-const mapStateToProps = (state) => {
-  return {
-    initialValues: getCurrentEmployee(state.employee.employees, state.employee.currentEmployeeId)
-  }
-}
-
 // You have to connect() to any reducers that you wish to connect to yourself
 const EmployeeStateForm = connect(
-  mapStateToProps,
+  (state) => ({
+    initialValues: getCurrentEmployee(state.employee.employees, state.employee.currentEmployeeId)
+  }),
   {
     load: getEmployee,
     save: saveEmployee

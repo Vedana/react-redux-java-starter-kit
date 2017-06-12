@@ -85,7 +85,7 @@ export function putEmployee (employee) {
   return fetch(ROOT_API + '/employees/' + employee.id, {
     credentials: 'include',
     headers: {'Content-Type': 'application/json'},
-    method: 'put',
+    method: 'PUT',
     body: JSON.stringify(employee)
   })
   .then(response =>
@@ -94,7 +94,7 @@ export function putEmployee (employee) {
 }
 
 /**
- * Modification d'un employé via l'API
+ * Sauvegarde/Ajoute un employee
  */
 export function saveEmployee (employee, method) {
   if (method === 'Add') {
@@ -121,19 +121,31 @@ export function saveEmployee (employee, method) {
   }
 }
 
+/**
+ * Ajoute un employee dans le store
+**/
 export function addEmployee(employee) {
   return {type: ADD_EMPLOYEE, employee: employee}
 }
 
+/**
+ * Modifie un employee dans le store
+**/
 export function modifyEmployee(employee) {
   return {type: MODIFY_EMPLOYEE, employee: employee}
 }
 
+/**
+ * Supprime un employee dans l'API puis le supprime dans le store
+**/
 export function deleteAnEmployee (employee) {
   deleteEmployee(employee)
   return {type: DELETE_EMPLOYEE, employee: employee}
 }
 
+/**
+ * Appel de l'API pour supprimer un employee
+**/
 export function deleteEmployee (employee) {
   return fetch(ROOT_API + '/employees/' + employee.id, {
     credentials: 'include',
@@ -145,11 +157,14 @@ export function deleteEmployee (employee) {
   )
 }
 
+/**
+ * Appel de l'api pour ajouter un employee
+**/
 export function postEmployee (employee) {
   return fetch(ROOT_API + '/employees/', {
     credentials: 'include',
     headers: {'Content-Type': 'application/json'},
-    method: 'post',
+    method: 'POST',
     body: JSON.stringify(employee)
   })
   .then(response =>

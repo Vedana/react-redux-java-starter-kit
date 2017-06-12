@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { Button } from 'react-bootstrap'
-// import FontAwesome from 'react-fontawesome'
 import {deleteAnEmployee} from '../redux/actions/employee-actions'
 
 const EmployeeList = (props) => (
@@ -18,7 +17,6 @@ const EmployeeList = (props) => (
             <th className="col-md-8">Description</th>
             <th className="col-md-1">Modify</th>
             <th className="col-md-1">Delete</th>
-
           </tr>
         </thead>
         <tbody>
@@ -40,12 +38,9 @@ const EmployeeList = (props) => (
                     <span className="fa fa-remove"></span>
                   </Button>
                 </td>
-
               </tr>
           )}
-
         </tbody>
-
       </table>
       <Link to={`/Employee/Add`}>
         <Button bsStyle="success">
@@ -55,19 +50,6 @@ const EmployeeList = (props) => (
     </div>
   </div>
 )
-
-/**
- * Map the Redux state to component properties
- * @param state Redux state
- * @return Component properties
- */
-function mapStateToProps (state) {
-  const props = {
-    employees: state.employee.employees
-  }
-
-  return props
-}
 
 /**
  * Create redux dispatch actions from the component.
@@ -82,7 +64,9 @@ function mapStateToProps (state) {
  * Connect component to the Redux store.
  */
 export default connect(
-  mapStateToProps, {
+  (state) => ({
+    employees: state.employee.employees
+  }), {
     deleteEmployee: deleteAnEmployee
   }
 )(EmployeeList)

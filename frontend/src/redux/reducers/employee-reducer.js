@@ -2,7 +2,8 @@ import {SET_EMPLOYEES, SET_CURRENT_EMPLOYEE, DELETE_EMPLOYEE, ADD_EMPLOYEE, MODI
 
 /** Etat initial */
 const initialState = {
-  employees: []
+  employees: [],
+  currentEmployeeId: null
 }
 
 /**
@@ -40,7 +41,7 @@ export function employee (state = initialState, action) {
         }
         return employee
       })
-      return {...state, employees: arrayTemp}
+      return {...state, employees: arrayTemp, currentEmployeeId: null}
     default:
       return state
   }

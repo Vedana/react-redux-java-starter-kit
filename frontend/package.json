@@ -6,12 +6,15 @@
   "scripts": {
     "prestart": "cpx ./src/index.html ./build/",
     "start": "node ./fuse.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --compilers js:babel-core/register"
   },
   "author": "Didier MOISE",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "chai": "^4.0.2",
+    "enzyme": "^2.8.2",
+    "mocha": "^3.4.2",
     "react": "^15.4.1",
     "react-bootstrap": "^0.31.0",
     "react-bootstrap-table": "^3.1.7",

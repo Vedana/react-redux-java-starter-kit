@@ -50,7 +50,7 @@ export function getEmployee (id) {
   return (dispatch) => {
     fetchEmployee(id)
     .then(data => {
-      dispatch(setEmployee(data))
+      dispatch(setCurrentEmployee(data))
     })
     .catch((e) => {
       alert(e.message)
@@ -74,7 +74,7 @@ export function fetchEmployee (id) {
 /**
  * Chargement de l'employee courant dans le store
  */
-export function setEmployee (employee) {
+export function setCurrentEmployee (employee) {
   return {type: SET_CURRENT_EMPLOYEE, employee: employee}
 }
 
@@ -102,7 +102,6 @@ export function saveEmployee (employee, method) {
       postEmployee(employee)
       .then(data => {
         dispatch(addEmployee(data))
-        console.log(data);
       })
       .catch((e) => {
         alert(e.message)
@@ -124,37 +123,43 @@ export function saveEmployee (employee, method) {
 /**
  * Ajoute un employee dans le store
 **/
-export function addEmployee(employee) {
+export function addEmployee (employee) {
   return {type: ADD_EMPLOYEE, employee: employee}
 }
 
 /**
  * Modifie un employee dans le store
 **/
-export function modifyEmployee(employee) {
+export function modifyEmployee (employee) {
   return {type: MODIFY_EMPLOYEE, employee: employee}
 }
 
 /**
  * Supprime un employee dans l'API puis le supprime dans le store
 **/
-export function deleteAnEmployee (employee) {
-  deleteEmployee(employee)
+export function deleteEmployee (employee) {
   return {type: DELETE_EMPLOYEE, employee: employee}
+}
+
+export function deleteAnEmployee (employee) {
+  return (dispatch) => {
+    destroyEmployee(employee)
+    .then(dispatch(deleteEmployee(employee)))
+    .catch((e) => {
+      alert(e.message)
+    })
+  }
 }
 
 /**
  * Appel de l'API pour supprimer un employee
 **/
-export function deleteEmployee (employee) {
+export function destroyEmployee (employee) {
   return fetch(ROOT_API + '/employees/' + employee.id, {
     credentials: 'include',
     headers: {'Content-Type': 'application/json'},
     method: 'DELETE'
   })
-  .then(response =>
-    response.json()
-  )
 }
 
 /**

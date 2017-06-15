@@ -39,30 +39,35 @@ let employeeAlone = employees[0]
 let employeeModified = {id: 1, firstName: 'Patate', lastName: 'Patate', description: 'Patate'}
 
 describe('Test Reducers', () => {
+
   it('reducer setEmployees', () => {
     state = employee(state, { type: SET_EMPLOYEES, employees })
     assert.equal(
       testObject(state, { employees: employees, currentEmployeeId: null }
     ), true)
   })
+
   it('reducer setCurrentEmployees', () => {
     state = employee(state, { type: SET_CURRENT_EMPLOYEE, employee: employeeAlone })
     assert.equal(
       testObject(state, { employees: employees, currentEmployeeId: 1 }
     ), true)
   })
+
   it('reducer deleteEmployees', () => {
     state = employee(state, { type: DELETE_EMPLOYEE, employee: employeeAlone })
     assert.equal(
       testObject(state, { employees: employees2, currentEmployeeId: 1 }),
       true)
   })
+
   it('reducer addEmployee', () => {
     state = employee(state, { type: ADD_EMPLOYEE, employee: employeeAlone })
     assert.equal(
       testObject(state, { employees: employees3, currentEmployeeId: 1 }),
       true)
   })
+
   it('reducer modifyEmployee', () => {
     state = employee(state, { type: MODIFY_EMPLOYEE, employee: employeeModified })
     assert.equal(

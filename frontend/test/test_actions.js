@@ -1,7 +1,15 @@
 import assert from 'assert'
 
-import { SET_EMPLOYEES, SET_CURRENT_EMPLOYEE, DELETE_EMPLOYEE, ADD_EMPLOYEE, MODIFY_EMPLOYEE,
-  setEmployees, setCurrentEmployee, addEmployee, modifyEmployee, deleteEmployee } from '../src/redux/actions/employee-actions'
+import { SET_EMPLOYEES,
+  SET_CURRENT_EMPLOYEE,
+  DELETE_EMPLOYEE,
+  ADD_EMPLOYEE,
+  MODIFY_EMPLOYEE,
+  setEmployees,
+  setCurrentEmployee,
+  addEmployee,
+  modifyEmployee,
+  deleteEmployee } from '../src/redux/actions/employee-actions'
 
 function testObject (object1, object2) {
   if (JSON.stringify(object1) === JSON.stringify(object2)) {
@@ -19,22 +27,27 @@ let employee = {id: 7, firstName: 'Patate', lastName: 'Patate', description: 'Pa
 let action
 
 describe('Test Actions', () => {
+
   it('action setEmployees', () => {
     action = {type: SET_EMPLOYEES, employees}
     assert.equal(testObject(setEmployees(employees), action), true)
   })
+
   it('action setCurrentEmployee', () => {
     action = {type: SET_CURRENT_EMPLOYEE, employee}
     assert.equal(testObject(setCurrentEmployee(employee), action), true)
   })
+
   it('action addEmployee', () => {
     action = {type: ADD_EMPLOYEE, employee}
     assert.equal(testObject(addEmployee(employee), action), true)
   })
+
   it('action modifyEmployee', () => {
     action = {type: MODIFY_EMPLOYEE, employee}
     assert.equal(testObject(modifyEmployee(employee), action), true)
   })
+
   it('action deleteEmployee', () => {
     action = {type: DELETE_EMPLOYEE, employee}
     assert.equal(testObject(deleteEmployee(employee), action), true)

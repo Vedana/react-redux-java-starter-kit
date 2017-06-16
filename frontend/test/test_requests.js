@@ -6,7 +6,11 @@ import { fetchEmployees,
   postEmployee } from '../src/redux/actions/employee-actions'
 
 
+
+
+
 import nock from 'nock'
+
 
 nock('/api')
   .get('/employees')
@@ -29,13 +33,13 @@ nock('/api')
 
 console.log(fetchEmployees())
 
-console.log(fetchEmployee(1));
+console.log(fetchEmployee(1))
 
 
 let employee = {id: 7, firstName: 'Patate', lastName: 'Patate', description: 'Patate'}
 
-console.log(putEmployee(employee));
+console.log(putEmployee(employee))
 
-console.log(postEmployee(employee));
+console.log(postEmployee(employee))
 
-console.log(destroyEmployee(0));
+// console.log(destroyEmployee(0));

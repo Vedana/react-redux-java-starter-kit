@@ -9,7 +9,7 @@ const EmployeeList = (props) => (
   <div className="container">
     <h1>Employee List</h1>
     <div>
-      <table className="table table-bordered table-striped">
+      <table className="table table-bordered table-striped employees-table">
         <thead>
           <tr>
             <th className="col-md-2">First name</th>
@@ -22,11 +22,11 @@ const EmployeeList = (props) => (
         <tbody>
           {props.employees.map(
             employee =>
-              <tr key={employee.id}>
-                <td>{employee.firstName}</td>
-                <td>{employee.lastName}</td>
-                <td>{employee.description}</td>
-                <td>
+              <tr key={employee.id} className="employee-row">
+                <td className="employee-first-name">{employee.firstName}</td>
+                <td className="employee-last-name">{employee.lastName}</td>
+                <td className="employee-description">{employee.description}</td>
+                <td className="employee-id">
                   <Link to={`/Employee/${employee.id}`}>
                     <Button bsStyle="info" bsSize="small">
                       <span className="fa fa-edit"></span>

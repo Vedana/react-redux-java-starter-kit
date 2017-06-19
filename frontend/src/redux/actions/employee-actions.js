@@ -94,7 +94,7 @@ export function putEmployee (employee) {
 }
 
 /**
- * Sauvegarde/Ajoute un employee
+ * Sauvegarde/Ajoute  un employee
  */
 export function saveEmployee (employee, method) {
   if (method === 'Add') {

@@ -1,11 +1,10 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { Button } from 'react-bootstrap'
 import {deleteAnEmployee} from '../redux/actions/employee-actions'
 
-const EmployeeList = (props) => (
+export const EmployeeList = (props) => (
   <div className="container">
     <h1>Employee List</h1>
     <div>
@@ -26,15 +25,15 @@ const EmployeeList = (props) => (
                 <td className="employee-first-name">{employee.firstName}</td>
                 <td className="employee-last-name">{employee.lastName}</td>
                 <td className="employee-description">{employee.description}</td>
-                <td className="employee-id">
+                <td>
                   <Link to={`/Employee/${employee.id}`}>
-                    <Button bsStyle="info" bsSize="small">
+                    <Button bsStyle="info" bsSize="small" className="modify-employee">
                       <span className="fa fa-edit"></span>
                     </Button>
                   </Link>
                 </td>
                 <td>
-                  <Button bsStyle="danger" bsSize="small" onClick={ () => { props.deleteEmployee(employee) } }>
+                  <Button bsStyle="danger" bsSize="small" className="delete-employee" onClick={ () => { props.deleteEmployee(employee) } }>
                     <span className="fa fa-remove"></span>
                   </Button>
                 </td>

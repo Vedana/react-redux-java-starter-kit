@@ -25,17 +25,17 @@ class Employee extends React.Component {
   };
 
   render () {
-    const {handleSubmit, submitting, pristine} = this.props
+    const {handleSubmit, submitting} = this.props
     return (
       <div className="container">
         <h1>Employee</h1>
         <form className="form-group">
-          <div>First Name : <Field component="input" type="text" name="firstName" className="form-control" /></div>
-          <div>Last Name : <Field component="input" type="text" name="lastName" className="form-control" /></div>
-          <div>Description : <Field component="input" type="text" name="description" className="form-control" /></div>
+          <div className="employee-first-name">First Name : <Field component="input" type="text" name="firstName" className="form-control" /></div>
+          <div className="employee-last-name">Last Name : <Field component="input" type="text" name="lastName" className="form-control" /></div>
+          <div className="employee-description">Description : <Field component="input" type="text" name="description" className="form-control" /></div>
           <br />
           <Button onClick={handleSubmit(this.handleSaveEvent)} className="form-control" disabled={submitting}>
-            {this.employeeId()=='Add'?'Add Employee':'Update Employee'}
+            {this.employeeId() === 'Add' ? 'Add Employee' : 'Update Employee'}
           </Button>
         </form>
       </div>
@@ -51,15 +51,14 @@ const EmployeeForm = reduxForm({
   onSubmitSuccess: () => {
     browserHistory.push('/')
   },
-  enableReinitialize : true
+  enableReinitialize: true
 })(Employee)
-
 
 const getCurrentEmployee = (employees, currentEmployeeId) => {
   // employees:array[object(employee)], currentEmployeeId int => return object(employee)
   let currentEmployee
-  employees.map(function(employee) {
-    if (currentEmployeeId === employee.id){
+  employees.map(function (employee) {
+    if (currentEmployeeId === employee.id) {
       currentEmployee = employee
     }
   })

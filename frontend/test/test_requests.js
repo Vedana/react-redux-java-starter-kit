@@ -1,4 +1,4 @@
-
+import { it, describe } from 'mocha'
 import fetch from 'isomorphic-fetch'
 import nock from 'nock'
 import assert from 'assert'
@@ -25,19 +25,19 @@ let employees = [{id: 1, firstName: 'Frodo', lastName: 'Baggins', description: '
   {id: 5, firstName: 'Meriadoc', lastName: 'Brandybuck', description: 'pony rider'},
   {id: 6, firstName: 'Peregrin', lastName: 'Took', description: 'pipe smoker'}]
 
-let employees2 = [{id: 1, firstName: 'Frodon', lastName: 'Baggins', description: 'ring bearer'},
-  {id: 2, firstName: 'Bilbo', lastName: 'Baggins', description: 'burglar'},
-  {id: 3, firstName: 'Gandalf', lastName: 'the Grey', description: 'wizard'},
-  {id: 4, firstName: 'Samwise', lastName: 'Gamgee', description: 'gardener'},
-  {id: 5, firstName: 'Meriadoc', lastName: 'Brandybuck', description: 'pony rider'},
-  {id: 6, firstName: 'Peregrin', lastName: 'Took', description: 'pipe smoker'}]
-
-let employees3 = [{id: 2, firstName: 'Bilbo', lastName: 'Baggins', description: 'burglar'},
-  {id: 3, firstName: 'Gandalf', lastName: 'the Grey', description: 'wizard'},
-  {id: 4, firstName: 'Samwise', lastName: 'Gamgee', description: 'gardener'},
-  {id: 5, firstName: 'Meriadoc', lastName: 'Brandybuck', description: 'pony rider'},
-  {id: 6, firstName: 'Peregrin', lastName: 'Took', description: 'pipe smoker'}]
-
+// let employees2 = [{id: 1, firstName: 'Frodon', lastName: 'Baggins', description: 'ring bearer'},
+//   {id: 2, firstName: 'Bilbo', lastName: 'Baggins', description: 'burglar'},
+//   {id: 3, firstName: 'Gandalf', lastName: 'the Grey', description: 'wizard'},
+//   {id: 4, firstName: 'Samwise', lastName: 'Gamgee', description: 'gardener'},
+//   {id: 5, firstName: 'Meriadoc', lastName: 'Brandybuck', description: 'pony rider'},
+//   {id: 6, firstName: 'Peregrin', lastName: 'Took', description: 'pipe smoker'}]
+//
+// let employees3 = [{id: 2, firstName: 'Bilbo', lastName: 'Baggins', description: 'burglar'},
+//   {id: 3, firstName: 'Gandalf', lastName: 'the Grey', description: 'wizard'},
+//   {id: 4, firstName: 'Samwise', lastName: 'Gamgee', description: 'gardener'},
+//   {id: 5, firstName: 'Meriadoc', lastName: 'Brandybuck', description: 'pony rider'},
+//   {id: 6, firstName: 'Peregrin', lastName: 'Took', description: 'pipe smoker'}]
+//
 let employees4 = [{id: 2, firstName: 'Bilbo', lastName: 'Baggins', description: 'burglar'},
   {id: 3, firstName: 'Gandalf', lastName: 'the Grey', description: 'wizard'},
   {id: 4, firstName: 'Samwise', lastName: 'Gamgee', description: 'gardener'},
@@ -50,14 +50,7 @@ global.fetch = function (url, options) {
   return fetch(finalUrl, options)
 }
 
-
-//
-// fetchEmployees().then(response => {
-//   console.log(response)
-// })
-
 describe('Test Requests', () => {
-
   it('request fetchEmployees', () => {
     nock('http://localhost:4444/api')
       .get('/employees')
@@ -119,11 +112,9 @@ describe('Test Requests', () => {
   })
 })
 
-
-
 // console.log(fetchEmployees())
 //
-//console.log(fetchEmployee(1))
+// console.log(fetchEmployee(1))
 //
 // let employee = {id: 7, firstName: 'Patate', lastName: 'Patate', description: 'Patate'}
 //

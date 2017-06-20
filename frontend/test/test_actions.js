@@ -1,4 +1,5 @@
-import assert from 'assert'
+import {expect} from 'chai'
+import { it, describe } from 'mocha'
 
 import { SET_EMPLOYEES,
   SET_CURRENT_EMPLOYEE,
@@ -11,12 +12,6 @@ import { SET_EMPLOYEES,
   modifyEmployee,
   deleteEmployee } from '../src/redux/actions/employee-actions'
 
-function testObject (object1, object2) {
-  if (JSON.stringify(object1) === JSON.stringify(object2)) {
-    return true
-  }
-  return false
-}
 let employees = [{id: 1, firstName: 'Frodo', lastName: 'Baggins', description: 'ring bearer'},
   {id: 2, firstName: 'Bilbo', lastName: 'Baggins', description: 'burglar'},
   {id: 3, firstName: 'Gandalf', lastName: 'the Grey', description: 'wizard'},
@@ -27,29 +22,29 @@ let employee = {id: 7, firstName: 'Patate', lastName: 'Patate', description: 'Pa
 let action
 
 describe('Test Actions', () => {
-
   it('action setEmployees', () => {
     action = {type: SET_EMPLOYEES, employees}
-    assert.equal(testObject(setEmployees(employees), action), true)
+    expect(action).to.deep.equal(setEmployees(employees))
+    // assert.equal(testObject(setEmployees(employees), action), true)
   })
 
   it('action setCurrentEmployee', () => {
     action = {type: SET_CURRENT_EMPLOYEE, employee}
-    assert.equal(testObject(setCurrentEmployee(employee), action), true)
+    expect(action).to.deep.equal(setCurrentEmployee(employee))
   })
 
   it('action addEmployee', () => {
     action = {type: ADD_EMPLOYEE, employee}
-    assert.equal(testObject(addEmployee(employee), action), true)
+    expect(action).to.deep.equal(addEmployee(employee))
   })
 
   it('action modifyEmployee', () => {
     action = {type: MODIFY_EMPLOYEE, employee}
-    assert.equal(testObject(modifyEmployee(employee), action), true)
+    expect(action).to.deep.equal(modifyEmployee(employee))
   })
 
   it('action deleteEmployee', () => {
     action = {type: DELETE_EMPLOYEE, employee}
-    assert.equal(testObject(deleteEmployee(employee), action), true)
+    expect(action).to.deep.equal(deleteEmployee(employee))
   })
 })

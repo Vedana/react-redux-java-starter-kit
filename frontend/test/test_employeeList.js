@@ -5,20 +5,6 @@ import {expect} from 'chai'
 
 import {EmployeeList} from '../src/components/EmployeeList'
 
-// import jsdom from 'jsdom'
-// // const doc = jsdom.jsdom('<!doctype html><html><body></body></html>')
-// //
-// global.document = jsdom
-// // console.log(jsdom);
-// global.window = document.defaultView
-//
-// import jsdom from 'jsdom'
-// const doc = jsdom.JSDOM
-// global.document = doc
-// global.window = doc.defaultView
-
-// console.log(''+jsdom.JSDOM);
-
 let employees = [{id: 1, firstName: 'Frodo', lastName: 'Baggins', description: 'ring bearer'},
   {id: 2, firstName: 'Bilbo', lastName: 'Baggins', description: 'burglar'},
   {id: 3, firstName: 'Gandalf', lastName: 'the Grey', description: 'wizard'},
@@ -43,12 +29,4 @@ describe('Test EmployeeList', () => {
     let newState = {employees: newEmployees, currentEmployeeId: null}
     expect(newState).to.deep.equal(state)
   })
-
-  // it('Supprimer un employee', () => {
-  //   let employeesRow = wrapper.find('.employee-row')
-  //   console.log(employeesRow)
-  //   employeesRow.first().find('.delete-employee').simulate('click')
-  //   console.log(employeesRow)
-  // })
-
 })

@@ -1,6 +1,5 @@
 import {expect} from 'chai'
 import { it, describe } from 'mocha'
-
 import { SET_EMPLOYEES,
   SET_CURRENT_EMPLOYEE,
   DELETE_EMPLOYEE,
@@ -25,7 +24,6 @@ describe('Test Actions', () => {
   it('action setEmployees', () => {
     action = {type: SET_EMPLOYEES, employees}
     expect(action).to.deep.equal(setEmployees(employees))
-    // assert.equal(testObject(setEmployees(employees), action), true)
   })
 
   it('action setCurrentEmployee', () => {

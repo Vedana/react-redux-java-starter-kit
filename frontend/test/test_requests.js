@@ -24,20 +24,6 @@ let employees = [{id: 1, firstName: 'Frodo', lastName: 'Baggins', description: '
   {id: 4, firstName: 'Samwise', lastName: 'Gamgee', description: 'gardener'},
   {id: 5, firstName: 'Meriadoc', lastName: 'Brandybuck', description: 'pony rider'},
   {id: 6, firstName: 'Peregrin', lastName: 'Took', description: 'pipe smoker'}]
-
-// let employees2 = [{id: 1, firstName: 'Frodon', lastName: 'Baggins', description: 'ring bearer'},
-//   {id: 2, firstName: 'Bilbo', lastName: 'Baggins', description: 'burglar'},
-//   {id: 3, firstName: 'Gandalf', lastName: 'the Grey', description: 'wizard'},
-//   {id: 4, firstName: 'Samwise', lastName: 'Gamgee', description: 'gardener'},
-//   {id: 5, firstName: 'Meriadoc', lastName: 'Brandybuck', description: 'pony rider'},
-//   {id: 6, firstName: 'Peregrin', lastName: 'Took', description: 'pipe smoker'}]
-//
-// let employees3 = [{id: 2, firstName: 'Bilbo', lastName: 'Baggins', description: 'burglar'},
-//   {id: 3, firstName: 'Gandalf', lastName: 'the Grey', description: 'wizard'},
-//   {id: 4, firstName: 'Samwise', lastName: 'Gamgee', description: 'gardener'},
-//   {id: 5, firstName: 'Meriadoc', lastName: 'Brandybuck', description: 'pony rider'},
-//   {id: 6, firstName: 'Peregrin', lastName: 'Took', description: 'pipe smoker'}]
-//
 let employees4 = [{id: 2, firstName: 'Bilbo', lastName: 'Baggins', description: 'burglar'},
   {id: 3, firstName: 'Gandalf', lastName: 'the Grey', description: 'wizard'},
   {id: 4, firstName: 'Samwise', lastName: 'Gamgee', description: 'gardener'},
@@ -111,15 +97,3 @@ describe('Test Requests', () => {
     nock.cleanAll()
   })
 })
-
-// console.log(fetchEmployees())
-//
-// console.log(fetchEmployee(1))
-//
-// let employee = {id: 7, firstName: 'Patate', lastName: 'Patate', description: 'Patate'}
-//
-// console.log(putEmployee(employee))
-//
-// console.log(postEmployee(employee))
-//
-// console.log(destroyEmployee(0))

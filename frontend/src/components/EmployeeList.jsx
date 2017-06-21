@@ -55,9 +55,6 @@ export const EmployeeList = (props) => (
  * @param dispatch Redux dispatcher
  * @return Component properties
  */
-// function mapDispatchToProps (dispatch) {
-//   return bindActionCreators(, dispatch)
-// }
 
 /**
  * Connect component to the Redux store.

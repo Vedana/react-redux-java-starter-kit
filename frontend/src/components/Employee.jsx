@@ -8,7 +8,7 @@ import { browserHistory } from 'react-router'
 import {getEmployee, saveEmployee} from '../redux/actions/employee-actions'
 
 // Employee form
-class Employee extends React.Component {
+export class Employee extends React.Component {
   componentWillMount () {
     let id = this.employeeId()
     if (id) {
@@ -46,7 +46,7 @@ class Employee extends React.Component {
 /**
  * Connect component to Redux form.
  */
-const EmployeeForm = reduxForm({
+export const EmployeeForm = reduxForm({
   form: 'employee', // form identifier
   onSubmitSuccess: () => {
     browserHistory.push('/')
@@ -54,15 +54,16 @@ const EmployeeForm = reduxForm({
   enableReinitialize: true
 })(Employee)
 
+
 const getCurrentEmployee = (employees, currentEmployeeId) => {
-  // employees:array[object(employee)], currentEmployeeId int => return object(employee)
+  // employees:array[object(employee)], currentEmployeeId:int
   let currentEmployee
   employees.map(function (employee) {
     if (currentEmployeeId === employee.id) {
       currentEmployee = employee
     }
   })
-  return currentEmployee
+  return currentEmployee // => return object(employee)
 }
 
 // You have to connect() to any reducers that you wish to connect to yourself

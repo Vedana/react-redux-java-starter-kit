@@ -6,13 +6,21 @@
   "scripts": {
     "prestart": "cpx ./src/index.html ./build/",
     "start": "node ./fuse.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --compilers js:babel-core/register"
   },
   "author": "Didier MOISE",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "chai": "^4.0.2",
+    "enzyme": "^2.8.2",
+    "fetch-mock": "^5.11.0",
+    "jsdom": "^11.0.0",
+    "jquery": "^3.2.1",
+    "mocha": "^3.4.2",
+    "nock": "^9.0.13",
     "react": "^15.4.1",
+    "react-bootstrap": "^0.31.0",
     "react-bootstrap-table": "^3.1.7",
     "react-dom": "^15.4.1",
     "react-redux": "^5.0.4",
@@ -33,6 +41,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "cpx": "^1.5.0",
+    "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
     "eslint-config-standard": "^10.2.0",
     "eslint-plugin-babel": "^4.1.1",
@@ -46,6 +55,9 @@
     "gulp-server-livereload": "^1.9.2",
     "http-proxy-middleware": "^0.17.4",
     "node-sass": "^4.5.2",
+    "react-addons-test-utils": "^15.6.0",
+    "react-dom": "^15.6.1",
+    "react-test-renderer": "^15.6.1",
     "rimraf": "^2.6.1",
     "run-sequence": "^1.2.2",
     "typescript": "^2.1.4"

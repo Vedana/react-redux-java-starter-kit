@@ -1,7 +1,10 @@
 import 'isomorphic-fetch'
 
 export const SET_EMPLOYEES = 'employees/SET_EMPLOYEES'
-export const SET_EMPLOYEE = 'employees/SET_EMPLOYEE'
+export const SET_CURRENT_EMPLOYEE = 'employees/SET_EMPLOYEE'
+export const DELETE_EMPLOYEE = 'employees/DELETE_EMPLOYEE'
+export const ADD_EMPLOYEE = 'employees/ADD_EMPLOYEE'
+export const MODIFY_EMPLOYEE = 'employees/MODIFY_EMPLOYEE'
 
 const ROOT_API = '/api'
 
@@ -47,7 +50,7 @@ export function getEmployee (id) {
   return (dispatch) => {
     fetchEmployee(id)
     .then(data => {
-      dispatch(setEmployee(data))
+      dispatch(setCurrentEmployee(data))
     })
     .catch((e) => {
       alert(e.message)
@@ -71,8 +74,8 @@ export function fetchEmployee (id) {
 /**
  * Chargement de l'employee courant dans le store
  */
-export function setEmployee (employee) {
-  return {type: SET_EMPLOYEE, employee}
+export function setCurrentEmployee (employee) {
+  return {type: SET_CURRENT_EMPLOYEE, employee: employee}
 }
 
 /**
@@ -82,7 +85,7 @@ export function putEmployee (employee) {
   return fetch(ROOT_API + '/employees/' + employee.id, {
     credentials: 'include',
     headers: {'Content-Type': 'application/json'},
-    method: 'put',
+    method: 'PUT',
     body: JSON.stringify(employee)
   })
   .then(response =>
@@ -91,16 +94,85 @@ export function putEmployee (employee) {
 }
 
 /**
- * Modification d'un employé via l'API
+ * Sauvegarde/Ajoute  un employee
  */
-export function saveEmployee (employee) {
+export function saveEmployee (employee, method) {
+  if (method === 'Add') {
+    return (dispatch) => {
+      postEmployee(employee)
+      .then(data => {
+        dispatch(addEmployee(data))
+      })
+      .catch((e) => {
+        alert(e.message)
+      })
+    }
+  } else {
+    return (dispatch) => {
+      putEmployee(employee)
+      .then(data => {
+        dispatch(modifyEmployee(data))
+      })
+      .catch((e) => {
+        alert(e.message)
+      })
+    }
+  }
+}
+
+/**
+ * Ajoute un employee dans le store
+**/
+export function addEmployee (employee) {
+  return {type: ADD_EMPLOYEE, employee: employee}
+}
+
+/**
+ * Modifie un employee dans le store
+**/
+export function modifyEmployee (employee) {
+  return {type: MODIFY_EMPLOYEE, employee: employee}
+}
+
+/**
+ * Supprime un employee dans l'API puis le supprime dans le store
+**/
+export function deleteEmployee (employee) {
+  return {type: DELETE_EMPLOYEE, employee: employee}
+}
+
+export function deleteAnEmployee (employee) {
   return (dispatch) => {
-    putEmployee(employee)
-    .then(data => {
-      dispatch(setEmployee(data))
-    })
+    destroyEmployee(employee)
+    .then(dispatch(deleteEmployee(employee)))
     .catch((e) => {
       alert(e.message)
     })
   }
+}
+
+/**
+ * Appel de l'API pour supprimer un employee
+**/
+export function destroyEmployee (employee) {
+  return fetch(ROOT_API + '/employees/' + employee.id, {
+    credentials: 'include',
+    headers: {'Content-Type': 'application/json'},
+    method: 'DELETE'
+  })
+}
+
+/**
+ * Appel de l'api pour ajouter un employee
+**/
+export function postEmployee (employee) {
+  return fetch(ROOT_API + '/employees/', {
+    credentials: 'include',
+    headers: {'Content-Type': 'application/json'},
+    method: 'POST',
+    body: JSON.stringify(employee)
+  })
+  .then(response =>
+    response.json()
+  )
 }

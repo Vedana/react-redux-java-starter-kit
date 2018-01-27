@@ -6,7 +6,8 @@ export const DELETE_EMPLOYEE = 'employees/DELETE_EMPLOYEE'
 export const ADD_EMPLOYEE = 'employees/ADD_EMPLOYEE'
 export const MODIFY_EMPLOYEE = 'employees/MODIFY_EMPLOYEE'
 
-const ROOT_API = '/api'
+// const ROOT_API = 'http://reactstarterkit-env.eu-west-1.elasticbeanstalk.com/api'
+const ROOT_API = 'http://localhost:8080/api'
 
 /**
  * Récupération de la liste des employés via l'API

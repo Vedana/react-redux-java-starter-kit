@@ -29,7 +29,7 @@ export function employee (state = initialState, action) {
       arrayTemp.splice(arrayTemp.indexOf(action.employee), 1)
       return {...state, employees: arrayTemp}
     case ADD_EMPLOYEE:
-      arrayTemp = {...state}.employees.slice()
+      arrayTemp = state.employees.slice()
       arrayTemp.push(action.employee)
       return {...state, employees: arrayTemp}
     case MODIFY_EMPLOYEE:

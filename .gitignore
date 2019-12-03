@@ -1,3 +1,7 @@
 /workspace
 
 frontend/package-lock\.json
+
+.idea/
+
+backend-js/node_modules/
